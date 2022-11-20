@@ -1,4 +1,4 @@
-package Teleatendimento.com.Pessoa;
+package teleatendemento.com.Pessoa;
 
 public class TipoTelefone {
     protected int id;

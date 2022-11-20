@@ -1,4 +1,4 @@
-package Teleatendimento.com.Pessoa;
+package teleatendemento.com.Pessoa;
 
 public class Endereco {
     protected int id;
