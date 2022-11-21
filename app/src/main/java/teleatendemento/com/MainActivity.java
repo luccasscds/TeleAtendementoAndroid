@@ -30,15 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
         database = new DatabaseHelper(this);
 
-        /*ArrayList<Telefone> telefones = new ArrayList<>();
-        telefones.add(
-                new Telefone( 0, 988198568, 86, new TipoTelefone(0, "celular") )
-        );
-        Pessoa newPerson = new Pessoa(0, "Lucas Silva", "27760933398", new Endereco(
-                0, "rua aminthas floriano", 751, 64007390, "Água mineral", "Teresina", "PI"
-        ), telefones);
-        Pessoa.Inserir(database, newPerson);*/
-
         recyclerView = findViewById(R.id.recyclerView);
 
         btn_add = findViewById(R.id.Btn_add);
