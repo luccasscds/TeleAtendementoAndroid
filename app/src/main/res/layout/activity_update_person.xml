@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPersonActivity">
+    tools:context=".UpdatePersonActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,9 +17,9 @@
             android:id="@+id/Tv_pessoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
             android:text="@string/personal_data"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -28,7 +28,7 @@
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/Tb_nome"
+            android:id="@+id/Tb_nome2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -46,7 +46,7 @@
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/Tb_cpf"
+            android:id="@+id/Tb_cpf2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -60,7 +60,7 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_nome"
+            app:layout_constraintTop_toBottomOf="@+id/Tb_nome2"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -74,10 +74,10 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_cpf" />
+            app:layout_constraintTop_toBottomOf="@+id/Tb_cpf2" />
 
         <EditText
-            android:id="@+id/Tb_cep"
+            android:id="@+id/Tb_cep2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -91,11 +91,10 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_endereco"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_endereco" />
 
         <EditText
-            android:id="@+id/Tb_logradouro"
+            android:id="@+id/Tb_logradouro2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -109,10 +108,10 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_cep" />
+            app:layout_constraintTop_toBottomOf="@+id/Tb_cep2" />
 
         <EditText
-            android:id="@+id/Tb_numero"
+            android:id="@+id/Tb_numero2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -126,10 +125,10 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_logradouro" />
+            app:layout_constraintTop_toBottomOf="@+id/Tb_logradouro2" />
 
         <EditText
-            android:id="@+id/Tb_bairro"
+            android:id="@+id/Tb_bairro2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -143,10 +142,10 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_numero" />
+            app:layout_constraintTop_toBottomOf="@+id/Tb_numero2" />
 
         <EditText
-            android:id="@+id/Tb_cidade"
+            android:id="@+id/Tb_cidade2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -160,10 +159,10 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_bairro" />
+            app:layout_constraintTop_toBottomOf="@+id/Tb_bairro2" />
 
         <Spinner
-            android:id="@+id/Tb_estado"
+            android:id="@+id/Tb_estado2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -176,11 +175,11 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_cidade"
+            app:layout_constraintTop_toBottomOf="@+id/Tb_cidade2"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/Tv_phones"
+            android:id="@+id/Tv_phones2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -190,10 +189,10 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_estado" />
+            app:layout_constraintTop_toBottomOf="@+id/Tb_estado2" />
 
         <EditText
-            android:id="@+id/Tb_ddd"
+            android:id="@+id/Tb_ddd2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -207,10 +206,10 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tv_phones" />
+            app:layout_constraintTop_toBottomOf="@+id/Tv_phones2" />
 
         <EditText
-            android:id="@+id/Tb_numero_telefone"
+            android:id="@+id/Tb_numero_telefone2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -224,10 +223,10 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_ddd" />
+            app:layout_constraintTop_toBottomOf="@+id/Tb_ddd2" />
 
         <Spinner
-            android:id="@+id/Tb_tipo_telefone"
+            android:id="@+id/Tb_tipo_telefone2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -240,11 +239,11 @@
             android:minHeight="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_numero_telefone"
+            app:layout_constraintTop_toBottomOf="@+id/Tb_numero_telefone2"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/Btn_ok"
+            android:id="@+id/Btn_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -252,14 +251,30 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16sp"
             android:background="@color/success"
             android:clickable="true"
-            android:text="OK"
+            android:text="Atualizar"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tb_tipo_telefone" />
+            app:layout_constraintTop_toBottomOf="@+id/Tb_tipo_telefone2" />
 
+        <Button
+            android:id="@+id/Btn_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/danger"
+            android:text="@string/deletar"
+            android:clickable="true"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/danger" />
     </LinearLayout>
 </ScrollView>

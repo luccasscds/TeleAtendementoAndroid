@@ -13,10 +13,19 @@
         android:theme="@style/Theme.TeleAtendemento"
         tools:targetApi="31">
         <activity
-            android:name=".AddPersonActivity"
-            android:label="@string/new_add"
+            android:name=".UpdatePersonActivity"
+            android:label="@string/update"
             android:parentActivityName=".MainActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AddPersonActivity"
+            android:exported="false"
+            android:label="@string/new_add"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

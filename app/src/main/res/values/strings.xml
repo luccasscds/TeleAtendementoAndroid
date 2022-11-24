@@ -1,20 +1,24 @@
 <resources>
-    <string name="app_name">TeleAtendemento</string>
-    <string name="app_version">V0.0.1</string>
+    <string name="app_name" translatable="false">TeleAtendemento</string>
+    <string name="app_version" translatable="false">V0.0.1</string>
 
     <string name="new_add">Adicionar novo</string>
+    <string name="update">Atualizar dados</string>
     <string name="personal_data">Dados pessoais</string>
     <string name="address">Endereço</string>
     <string name="phones">Telefones</string>
+
+    <!--  Field  -->
     <string name="type_name">Digite seu nome</string>
-    <string name="cpf">CPF</string>
-    <string name="cep">CEP</string>
+    <string name="cpf" translatable="false">CPF</string>
+    <string name="cep" translatable="false">CEP</string>
     <string name="logradouro">Logradouro</string>
     <string name="number">Número</string>
     <string name="bairro">Bairro</string>
     <string name="city">Cidade</string>
     <string name="state">Estado</string>
-    <string name="ddd">DDD</string>
+    <string name="ddd" translatable="false">DDD</string>
     <string name="phone_number">Número de telefone</string>
     <string name="phone_type">Tipo de telefone</string>
+    <string name="deletar">Deletar</string>
 </resources>

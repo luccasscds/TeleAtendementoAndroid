@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FloatingActionButton btn_add;
     ItemListViem itemListViem;
+    TextView no_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         database = new DatabaseHelper(this);
 
         recyclerView = findViewById(R.id.recyclerView);
+        no_data = findViewById(R.id.no_data);
 
         btn_add = findViewById(R.id.Btn_add);
         btn_add.setOnClickListener(new View.OnClickListener() {
@@ -48,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Pessoa> newPeople = Pessoa.Consultar(database, "all");
 
         if(newPeople.size() == 0) {
-            Toast.makeText(this, "Sem dados", Toast.LENGTH_SHORT).show();
+            no_data.setVisibility(View.VISIBLE);
         } else {
             itemListViem = new ItemListViem(this, newPeople);
             recyclerView.setAdapter(itemListViem);
             recyclerView.setLayoutManager( new LinearLayoutManager(this));
+            no_data.setVisibility(View.INVISIBLE);
         }
     }
 }

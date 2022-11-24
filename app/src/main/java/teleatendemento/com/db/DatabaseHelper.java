@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import teleatendemento.com.Pessoa.Pessoa;
@@ -91,11 +92,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     ")";
             db.execSQL(tablePessoaTelefone);
 
+            // TRIGGER ON DELETE
+            db.execSQL("CREATE TRIGGER IF NOT EXISTS TRG_PESSOA_ENDERECO_PESTEL_TELEFONE_TIPTELEFONE\n" +
+                    "        BEFORE DELETE ON PESSOA\n" +
+                    "BEGIN\n" +
+                    "    DELETE FROM ENDERECO\n" +
+                    "          WHERE ID = (\n" +
+                    "                         SELECT p.ENDERECO_ID\n" +
+                    "                           FROM PESSOA p\n" +
+                    "                          WHERE p.ID = OLD.ID\n" +
+                    "                     );\n" +
+                    "    DELETE FROM TIPO_TELEFONE\n" +
+                    "          WHERE ID = (\n" +
+                    "                         SELECT t.TIPO_ID\n" +
+                    "                           FROM TELEFONE t\n" +
+                    "                          WHERE t.ID = (\n" +
+                    "                                           SELECT pt.ID_TELEFONE\n" +
+                    "                                             FROM PESSOA_TELEFONE pt\n" +
+                    "                                            WHERE pt.ID_PESSOA = OLD.ID\n" +
+                    "                                       )\n" +
+                    "                     );\n" +
+                    "    DELETE FROM TELEFONE\n" +
+                    "          WHERE ID = (\n" +
+                    "                         SELECT pt.ID_TELEFONE\n" +
+                    "                           FROM PESSOA_TELEFONE pt\n" +
+                    "                          WHERE pt.ID_PESSOA = OLD.ID\n" +
+                    "                     );\n" +
+                    "    DELETE FROM PESSOA_TELEFONE\n" +
+                    "          WHERE ID_PESSOA = (\n" +
+                    "                                SELECT p.ID\n" +
+                    "                                  FROM PESSOA p\n" +
+                    "                                 WHERE p.ID = OLD.ID\n" +
+                    "                            );\n" +
+                    "END;");
+
         } catch (Exception e){
             Toast.makeText(
                     this.context, "Não foi possível criado Banco de dados. Error: "+e.getLocalizedMessage(),
                     Toast.LENGTH_SHORT
             ).show();
+            Log.e("DB_LOG", ""+e.getLocalizedMessage());
         }
     }
 
@@ -155,8 +191,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor GetAll(String table) {
-        String query = "SELECT * FROM "+table;
+    public Cursor GetAll(String tableName) {
+        String query = "SELECT * FROM "+tableName;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
@@ -165,5 +201,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return cursor;
+    }
+
+    public void UpdateData(Pessoa newPerson) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try{
+            ContentValues enderecoValues = new ContentValues();
+            enderecoValues.put(LogradouroField, newPerson.ENDERECO.LOGRADOURO);
+            enderecoValues.put(NumeroField, newPerson.ENDERECO.NUMERO);
+            enderecoValues.put(CepField, newPerson.ENDERECO.CEP);
+            enderecoValues.put(BairroField, newPerson.ENDERECO.BAIRRO);
+            enderecoValues.put(CidadeField, newPerson.ENDERECO.CIDADE);
+            enderecoValues.put(EstadoField, newPerson.ENDERECO.ESTADO);
+            db.update(
+                    EnderecoTable, enderecoValues,
+                    IdField+"=?", new String[]{String.valueOf(newPerson.ENDERECO.ID())}
+            );
+
+            ContentValues tipoTelefoneValues = new ContentValues();
+            tipoTelefoneValues.put(TipoField, newPerson.TELEFONES.get(0).TIPO.TIPO);
+            db.update(
+                    TipoTelefoneTable, tipoTelefoneValues,
+                    IdField+"=?", new String[]{String.valueOf(newPerson.TELEFONES.get(0).TIPO.ID())}
+            );
+
+            ContentValues telefoneValues = new ContentValues();
+            telefoneValues.put(NumeroField, newPerson.TELEFONES.get(0).NUMERO);
+            telefoneValues.put(DddField, newPerson.TELEFONES.get(0).DDD);
+            db.update(
+                    TelefoneTable, telefoneValues,
+                    IdField+"=?", new String[]{String.valueOf(newPerson.ENDERECO.ID())});
+
+            ContentValues pessoaValues = new ContentValues();
+            pessoaValues.put(NomeField, newPerson.NOME);
+            pessoaValues.put(CpfField, String.valueOf(newPerson.CPF));
+            db.update(
+                    PessoaTable, pessoaValues,
+                    IdField+"=?", new String[]{String.valueOf(newPerson.ID())}
+            );
+
+            Toast.makeText(this.context, "Dados atualizados com sucesso.", Toast.LENGTH_SHORT).show();
+        } catch(SQLiteException e) {
+            Toast.makeText(
+                    this.context, "Não foi possível atualizar os dados. Error: "+e.getLocalizedMessage(),
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
+    }
+
+    public void deleteOneData(long id) {
+        SQLiteDatabase db = getWritableDatabase();
+        long result = db.delete(PessoaTable, IdField+"=?", new String[]{String.valueOf(id)});
+
+        if(result == -1) {
+            Toast.makeText(this.context, "Não foi possível excluir o dado.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this.context, "Dado excluir com sucesso.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
